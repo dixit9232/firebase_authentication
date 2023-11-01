@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'ForgotPassword.dart';
 import 'login_with_phone_number.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -150,6 +151,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           )
                         : Text('Login')),
               ),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgotPassword(),
+                              ),
+                                  (route) => true);
+                        },
+                        child: Text(
+                          "Forgot Password?",
+                        ),
+                      ),
+                    ],
+                  ),
               SizedBox(height: 10),
               Text(
                 errorMasage,
