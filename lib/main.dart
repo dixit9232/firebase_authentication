@@ -8,7 +8,7 @@ import 'login_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(
+  runApp(MaterialApp(themeMode: ThemeMode.system,darkTheme: ThemeData.dark(),
     home:(FirebaseAuth.instance.currentUser!=null)?Dashboard():LoginScreen(),theme: ThemeData(primarySwatch: Colors.deepPurple),
     debugShowCheckedModeBanner: false,
   ));
