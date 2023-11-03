@@ -4,6 +4,8 @@ import 'package:firebase_authentication/add_notes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'login_screen.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -24,6 +26,20 @@ class _DashboardState extends State<Dashboard> {
       appBar: AppBar(
         title: Text('Notes'),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                FirebaseAuth.instance
+                    .signOut()
+                    .then((value) => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                        (route) => false));
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -86,19 +102,21 @@ class _DashboardState extends State<Dashboard> {
                                         ],
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: [
                                           IconButton(
                                               splashRadius: 25,
                                               onPressed: () {
                                                 FirebaseFirestore.instance
                                                     .collection(
-                                                    auth.currentUser!.uid)
+                                                        auth.currentUser!.uid)
                                                     .doc(notes['id'])
                                                     .delete();
                                               },
                                               icon: Icon(
-                                                Icons.delete,color: Colors.deepPurple,
+                                                Icons.delete,
+                                                color: Colors.deepPurple,
                                                 size: 20,
                                               ))
                                         ],
@@ -129,15 +147,3 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
-// ElevatedButton(
-// onPressed: () {
-// FirebaseAuth.instance
-//     .signOut()
-//     .then((value) => Navigator.pushAndRemoveUntil(
-// context,
-// MaterialPageRoute(
-// builder: (context) => LoginScreen(),
-// ),
-// (route) => false));
-// },
-// child: Text('Logout'))),
