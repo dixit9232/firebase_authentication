@@ -57,7 +57,7 @@ class _CreateNotesState extends State<CreateNotes> {
         if (notesController.text != '') {
           if (widget.l != null) {
             UpdateData();
-          } else {
+           } else {
             InsertData();
           }
         }
