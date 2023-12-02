@@ -8,11 +8,12 @@ import 'login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
-  runApp(MaterialApp(themeMode: ThemeMode.system,darkTheme: ThemeData.dark(useMaterial3: true),
-     home:(FirebaseAuth.instance.currentUser!=null)?Notes():LoginScreen(),theme: ThemeData(primarySwatch: Colors.deepPurple),
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MaterialApp(
+    themeMode: ThemeMode.system,
+    darkTheme: ThemeData.dark(useMaterial3: true),
+    home: (FirebaseAuth.instance.currentUser != null) ? Notes() : LoginScreen(),
+    theme: ThemeData(primarySwatch: Colors.deepPurple),
     debugShowCheckedModeBanner: false,
   ));
 }
